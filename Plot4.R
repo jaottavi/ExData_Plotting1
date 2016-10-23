@@ -5,7 +5,7 @@ if(!file.exists("electric.zip")){
   unzip("electric.zip")
 }
 electric <- read.table("household_power_consumption.txt", header = TRUE, sep = ";", na.strings="?", 
-  colClasses = c("character", "character", "numeric","numeric","numeric","numeric","numeric","numeric","numeric"), nrows= 70000)
+                       colClasses = c("character", "character", "numeric","numeric","numeric","numeric","numeric","numeric","numeric"), nrows= 70000)
 electric <- electric[electric$Date %in% c("1/2/2007","2/2/2007"), ]
 
 # get lubridate package for easier manipulation of dates and times
@@ -19,7 +19,7 @@ png("plot4.png")
 par(mfrow = c(2,2))
 
 # first plot - Global Active Power Histogram
-with(electric, hist(Global_active_power, col = "red", breaks = 12, main = "Global Active Power", xlab = "Global Active Power (kilowatts)"))
+with(electric, plot(DateTime, Global_active_power, type = "l", xlab = NA, ylab = "Global Active Power (kilowatts)"))
 
 # second plot - DateTime vs. Voltage line plot
 with(electric, plot(DateTime, Voltage, type = "l"))
